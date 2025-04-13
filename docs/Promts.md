@@ -75,13 +75,6 @@ Create a `README.md` with:
 
 ---
 
-### Copy to Clipboard
-To copy this prompt, click the button below:
-
-```html
-<button onclick="navigator.clipboard.writeText(document.querySelector('#spring-boot-hazelcast-prompt').innerText)">Copy to Clipboard</button>
-```
-
 ### Model used with VS Code agent mode:
 * GPT-4o
 * gemini-2.5-pro-preview-03-25
