@@ -9,6 +9,7 @@ import com.hazelcast.config.EvictionPolicy;
 import com.hazelcast.config.MaxSizePolicy;
 import com.hazelcast.config.IndexConfig;
 import com.hazelcast.config.IndexType;
+import com.hazelcast.config.RingbufferConfig;
 import com.hazelcast.core.Hazelcast;
 import com.hazelcast.core.HazelcastInstance;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +30,13 @@ public class HazelcastConfig {
                                 .setMaxSizePolicy(MaxSizePolicy.FREE_HEAP_SIZE)
                                 .setEvictionPolicy(EvictionPolicy.LRU))
                         .setTimeToLiveSeconds(3600));
+
+        // Ringbuffer Configuration
+        RingbufferConfig ringbufferConfig = new RingbufferConfig();
+        ringbufferConfig.setName("ringbuffer-demo");
+        ringbufferConfig.setCapacity(100); // Set capacity
+        ringbufferConfig.setTimeToLiveSeconds(0); // 0 means infinite TTL
+        config.addRingBufferConfig(ringbufferConfig);
 
         // Configure network for Kubernetes DNS discovery
         NetworkConfig networkConfig = config.getNetworkConfig();
