@@ -70,6 +70,18 @@ curl -X POST http://localhost:8080/cache/unlock/myKey
 
 # Delete an entry
 curl -X DELETE http://localhost:8080/cache/myKey
+
+# --- Ringbuffer Examples ---
+
+# Add an item to the ringbuffer (returns sequence number)
+curl -X POST -H "Content-Type: text/plain" -d 'event1' http://localhost:8080/ringbuffer/add
+curl -X POST -H "Content-Type: text/plain" -d 'event2' http://localhost:8080/ringbuffer/add
+
+# Read items starting from sequence 0
+curl "http://localhost:8080/ringbuffer/read?startSequence=0"
+
+# Get ringbuffer info
+curl http://localhost:8080/ringbuffer/info
 ```
 
 ## Docker Usage
@@ -146,7 +158,8 @@ curl -X DELETE http://localhost:8080/cache/myKey
 
 ## Features Demonstrated
 
--   Hazelcast distributed map storage (`IMap`)
+-   Hazelcast distributed map storage (`IMap`) via `CacheMapController`
+-   Hazelcast distributed ringbuffer (`Ringbuffer`) via `RingbufferController`
 -   Entry eviction policies (LRU, configured size)
 -   Time-To-Live (TTL) for entries
 -   Querying cache entries using `Predicates`
@@ -161,4 +174,4 @@ curl -X DELETE http://localhost:8080/cache/myKey
 
 ## Learning Objectives
 
-This project serves as a practical example for learning Hazelcast caching and clustering features within a modern Spring Boot application. Explore the code (`CacheController`, `HazelcastConfig`), review the configuration (`application.properties`, `deployment.yaml`), interact with the API via Swagger UI or `curl`, and observe the logs to understand the behavior in both local and Kubernetes environments.
+This project serves as a practical example for learning Hazelcast caching and clustering features within a modern Spring Boot application. Explore the code (`CacheMapController`, `HazelcastConfig`), review the configuration (`application.properties`, `deployment.yaml`), interact with the API via Swagger UI or `curl`, and observe the logs to understand the behavior in both local and Kubernetes environments.

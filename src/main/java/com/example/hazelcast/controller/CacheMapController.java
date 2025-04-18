@@ -23,13 +23,13 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/cache")
-@Tag(name = "Hazelcast Cache Controller", description = "APIs for interacting with the Hazelcast distributed cache")
-public class CacheController {
+@Tag(name = "Hazelcast Map Controller", description = "APIs for interacting with the Hazelcast distributed map (IMap)")
+public class CacheMapController {
 
     @Autowired
     private HazelcastInstance hazelcastInstance;
 
-    private static final Logger logger = LoggerFactory.getLogger(CacheController.class);
+    private static final Logger logger = LoggerFactory.getLogger(CacheMapController.class);
 
     private IMap<String, String> getCache() {
         return hazelcastInstance.getMap("default");
